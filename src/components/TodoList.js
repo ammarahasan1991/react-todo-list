@@ -12,6 +12,7 @@ class TodoList extends Component {
                         text={item.text}
                         completed={item.completed}
                         deleteTodoHandler={this.props.deleteTodoHandler}
+                        completedTodoHandler={this.props.completedTodoHandler}
                     />
                 )}
             </ul>

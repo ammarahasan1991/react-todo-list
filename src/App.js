@@ -14,9 +14,20 @@ class App extends Component {
     }
 
     deleteTodoHandler = (id) => {
-        console.log("delete Item", id);
         let newArray = this.state.todos.filter(item => item.id !== id);
         console.log(newArray);
+        this.setState(
+            { todos: newArray }
+        )
+    }
+
+    completedTodoHandler = (id) => {
+        let newArray = this.state.todos.map(item => {
+            if (item.id == id) {
+                item.completed = !item.completed
+            }
+            return item;
+        });
         this.setState(
             { todos: newArray }
         )
@@ -26,7 +37,11 @@ class App extends Component {
         return (
             <div>
                 <Header />
-                <TodoList todos={this.state.todos} deleteTodoHandler={this.deleteTodoHandler} />
+                <TodoList
+                    todos={this.state.todos}
+                    deleteTodoHandler={this.deleteTodoHandler}
+                    completedTodoHandler={this.completedTodoHandler}
+                />
             </div>
         );
     }
