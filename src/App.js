@@ -1,6 +1,7 @@
 import { Component } from "react";
 import Header from "./components/Header";
 import TodoList from "./components/TodoList";
+import todos from "./components/todos";
 
 class App extends Component {
 
@@ -8,12 +9,7 @@ class App extends Component {
         super();
 
         this.state = {
-            todos: [
-                { id: 1, text: "learn react", completed: false },
-                { id: 2, text: "learn JS", completed: true },
-                { id: 3, text: "learn Nodejs", completed: false },
-                { id: 4, text: "learn express", completed: true },
-            ]
+            todos: todos
         }
     }
 
