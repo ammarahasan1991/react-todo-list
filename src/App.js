@@ -1,25 +1,39 @@
-import logo from './logo.svg';
-import './App.css';
+import { Component } from "react";
+import Header from "./components/Header";
+import TodoList from "./components/TodoList";
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+class App extends Component {
+
+    constructor() {
+        super();
+
+        this.state = {
+            todos: [
+                { id: 1, text: "learn react", completed: false },
+                { id: 2, text: "learn JS", completed: true },
+                { id: 3, text: "learn Nodejs", completed: false },
+                { id: 4, text: "learn express", completed: true },
+            ]
+        }
+    }
+
+    deleteTodoHandler = (id) => {
+        console.log("delete Item", id);
+        let newArray = this.state.todos.filter(item => item.id !== id);
+        console.log(newArray);
+        this.setState(
+            { todos: newArray }
+        )
+    }
+
+    render() {
+        return (
+            <div>
+                <Header />
+                <TodoList todos={this.state.todos} deleteTodoHandler={this.deleteTodoHandler} />
+            </div>
+        );
+    }
 }
 
 export default App;
