@@ -1,46 +1,67 @@
-import { Component } from "react";
-import Header from "./components/Header";
-import TodoList from "./components/TodoList";
-import todos from "./components/todos";
+import { Component } from 'react';
+import Form from './components/Form';
+import Header from './components/Header';
+import TodoList from './components/TodoList';
 
 class App extends Component {
 
-    constructor() {
-        super();
+    constructor(props) {
+        super(props);
+        console.log("constructor App");
 
         this.state = {
-            todos: todos
+            todos: [
+                {
+                    id: 1,
+                    title: "take out the trash",
+                    completed: false
+                },
+                {
+                    id: 2,
+                    title: "Dinner with wife",
+                    completed: true
+                },
+                {
+                    id: 3,
+                    title: "Meeting with Boss",
+                    completed: false
+                }
+            ]
         }
     }
 
-    deleteTodoHandler = (id) => {
-        let newArray = this.state.todos.filter(item => item.id !== id);
-        console.log(newArray);
-        this.setState(
-            { todos: newArray }
-        )
+    deleteTodo = (id) => {
+        const newArray = this.state.todos.filter(item => item.id !== id);
+        this.setState({
+            todos: newArray
+        })
     }
 
-    completedTodoHandler = (id) => {
-        let newArray = this.state.todos.map(item => {
-            if (item.id == id) {
-                item.completed = !item.completed
-            }
-            return item;
-        });
-        this.setState(
-            { todos: newArray }
-        )
+    addTodo = (title) => {
+        const newTodo = {
+            id: Date.now(),
+            title: title,
+            completed: false
+        };
+        const newArray = this.state.todos;
+        newArray.push(newTodo);
+        this.setState({
+            todos: newArray
+        })
     }
 
     render() {
+        console.log("render App");
+        const filtered = this.state.todos;
         return (
             <div>
                 <Header />
+                <Form
+                    addTodo={this.addTodo}
+                />
                 <TodoList
-                    todos={this.state.todos}
-                    deleteTodoHandler={this.deleteTodoHandler}
-                    completedTodoHandler={this.completedTodoHandler}
+                    todos={filtered}
+                    deleteTodo={this.deleteTodo}
                 />
             </div>
         );

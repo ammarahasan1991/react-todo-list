@@ -2,18 +2,14 @@ import { Component } from "react";
 
 class TodoItem extends Component {
     render() {
+        console.log("render TodoItem");
         return (
             <li>
-                <input type="checkbox"
-                    id={this.props.id}
-                    defaultChecked={this.props.completed}
-                    onChange={() => this.props.completedTodoHandler(this.props.id)} />
-                <label htmlFor={this.props.id}
-                    style={{ textDecoration: this.props.completed ? 'line-through' : '' }}>
-                    {this.props.text}
-                </label>
-                <button onClick={() => this.props.deleteTodoHandler(this.props.id)}>x</button>
-            </li >
+                <input type="checkbox" id={this.props.id} defaultChecked={this.props.completed} />
+                <label htmlFor={this.props.id}>{this.props.title}</label>
+
+                <button onClick={() => { this.props.deleteTodo(this.props.id); }}>x</button>
+            </li>
         );
     }
 }

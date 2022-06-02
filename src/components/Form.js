@@ -1,33 +1,46 @@
-import React, { Component } from "react";
+import { Component } from "react";
 
 class Form extends Component {
 
-    constructor() {
-        super();
-        this.inputTextHandler = this.inputTextHandler.bind(this);
+    constructor(props) {
+        super(props);
+        this.state = {
+            inputText: ""
+        }
     }
 
-    inputTextHandler(e) {
-        this.props.inputText = e.target.value;
+    onChangeHandler = (e) => {
+        console.log(e.target.value);
+        this.setState({
+            inputText: e.target.value
+        })
     }
 
     render() {
+        console.log("render Form");
         return (
-            <form>
-                <input type="text" onChange={this.props.inputTextHandler} className="todo-input" />
-                <button className="todo-button" type="submit">
-                    Add
-                </button>
-                <div className="select">
-                    <select name="todos" className="filter-todo">
-                        <option value="all">All</option>
-                        <option value="completed">Completed</option>
-                        <option value="uncompleted">Uncompleted</option>
-                    </select>
-                </div>
-            </form>
+            <div>
+                <input type="text"
+                    placeholder="enter todo"
+                    value={this.state.inputText}
+                    onChange={this.onChangeHandler}
+                    onKeyDown={
+                        (e) => {
+                            if (e.key === "Enter") {
+                                if (this.state.inputText !== "") {
+                                    this.props.addTodo(this.state.inputText);
+                                    this.setState({
+                                        inputText: ""
+                                    });
+                                }
+                            }
+                        }
+                    }
+                />
+            </div>
         );
     }
+
 }
 
 export default Form;
