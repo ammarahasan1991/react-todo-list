@@ -14,6 +14,7 @@ class TodoList extends Component {
                         title={item.title}
                         completed={item.completed}
                         deleteTodo={this.props.deleteTodo}
+                        changeTodoState={this.props.changeTodoState}
                     />
                 })}
             </ul>

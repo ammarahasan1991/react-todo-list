@@ -5,7 +5,8 @@ class Form extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            inputText: ""
+            inputText: "",
+            filterOption: "all"
         }
     }
 
@@ -14,6 +15,14 @@ class Form extends Component {
         this.setState({
             inputText: e.target.value
         })
+    }
+
+    changeFilterOption = (e) => {
+        console.log(e.target.value)
+        this.setState({
+            filterOption: e.target.value
+        });
+        this.props.changeFilterOption(e.target.value);
     }
 
     render() {
@@ -37,6 +46,11 @@ class Form extends Component {
                         }
                     }
                 />
+                <select onChange={this.changeFilterOption}>
+                    <option value="all">All</option>
+                    <option value="completed">Completed</option>
+                    <option value="uncompleted">Uncompleted</option>
+                </select>
             </div>
         );
     }

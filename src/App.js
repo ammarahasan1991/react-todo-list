@@ -26,7 +26,8 @@ class App extends Component {
                     title: "Meeting with Boss",
                     completed: false
                 }
-            ]
+            ],
+            filterOption: "all"
         }
     }
 
@@ -50,18 +51,46 @@ class App extends Component {
         })
     }
 
+    changeTodoState = (id) => {
+        const newArray = this.state.todos.map(item => {
+            if (item.id === id) {
+                item.completed = !item.completed
+            }
+            return item
+        });
+        this.setState({
+            todos: newArray
+        })
+    }
+
+    changeFilterOption = (option) => {
+        console.log(option);
+        this.setState({
+            filterOption: option
+        })
+    }
+
     render() {
         console.log("render App");
-        const filtered = this.state.todos;
+        let filtered = [];
+        if (this.state.filterOption === "all") {
+            filtered = this.state.todos;
+        } else if (this.state.filterOption === "completed") {
+            filtered = this.state.todos.filter(item => item.completed === true)
+        } else {
+            filtered = this.state.todos.filter(item => item.completed === false)
+        }
         return (
             <div>
                 <Header />
                 <Form
                     addTodo={this.addTodo}
+                    changeFilterOption={this.changeFilterOption}
                 />
                 <TodoList
                     todos={filtered}
                     deleteTodo={this.deleteTodo}
+                    changeTodoState={this.changeTodoState}
                 />
             </div>
         );
