@@ -6,7 +6,7 @@ class TodoList extends Component {
     render() {
         console.log("render TodoList");
         return (
-            <ul>
+            <ul className="todo-list">
                 {this.props.todos.map(item => {
                     return <TodoItem
                         key={item.id}

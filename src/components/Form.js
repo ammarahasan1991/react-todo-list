@@ -28,9 +28,9 @@ class Form extends Component {
     render() {
         console.log("render Form");
         return (
-            <div>
+            <div className="todo-form">
                 <input type="text"
-                    placeholder="enter todo"
+                    placeholder="ادخل نص المهمة هنا"
                     value={this.state.inputText}
                     onChange={this.onChangeHandler}
                     onKeyDown={
@@ -47,9 +47,9 @@ class Form extends Component {
                     }
                 />
                 <select onChange={this.changeFilterOption}>
-                    <option value="all">All</option>
-                    <option value="completed">Completed</option>
-                    <option value="uncompleted">Uncompleted</option>
+                    <option value="all">الكل</option>
+                    <option value="completed">المكتملة</option>
+                    <option value="uncompleted">غير المكتملة</option>
                 </select>
             </div>
         );

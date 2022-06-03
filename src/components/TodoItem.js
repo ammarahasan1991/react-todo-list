@@ -4,7 +4,7 @@ class TodoItem extends Component {
     render() {
         console.log("render TodoItem");
         return (
-            <li>
+            <li className="todo-item">
                 <input
                     type="checkbox"
                     id={this.props.id}
@@ -13,10 +13,15 @@ class TodoItem extends Component {
                         this.props.changeTodoState(this.props.id);
                     }}
                 />
-                <label htmlFor={this.props.id}>{this.props.title}</label>
+                <label htmlFor={this.props.id} className="todo-label">{this.props.title}</label>
 
-                <button onClick={() => { this.props.deleteTodo(this.props.id); }}>x</button>
-            </li>
+                <button className="worning">
+                    <i className="fa-solid fa-pen"></i>
+                </button>
+                <button onClick={() => { this.props.deleteTodo(this.props.id); }} className="danger">
+                    <i className="fa-solid fa-trash-can"></i>
+                </button>
+            </li >
         );
     }
 }

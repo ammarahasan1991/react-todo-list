@@ -4,8 +4,8 @@ class Header extends Component {
     render() {
         console.log("render Header");
         return (
-            <header>
-                <h2>Todo App</h2>
+            <header className="app-header">
+                <h2>قائمة المهام</h2>
             </header>
         );
     }

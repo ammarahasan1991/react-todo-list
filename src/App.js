@@ -1,7 +1,9 @@
 import { Component } from 'react';
+import './App.css'
 import Form from './components/Form';
 import Header from './components/Header';
 import TodoList from './components/TodoList';
+
 
 class App extends Component {
 
@@ -13,17 +15,17 @@ class App extends Component {
             todos: [
                 {
                     id: 1,
-                    title: "take out the trash",
+                    title: "تعلم البرمجة",
                     completed: false
                 },
                 {
                     id: 2,
-                    title: "Dinner with wife",
+                    title: "تناول الفطور",
                     completed: true
                 },
                 {
                     id: 3,
-                    title: "Meeting with Boss",
+                    title: "استحم",
                     completed: false
                 }
             ],
@@ -81,7 +83,7 @@ class App extends Component {
             filtered = this.state.todos.filter(item => item.completed === false)
         }
         return (
-            <div>
+            <div className='app'>
                 <Header />
                 <Form
                     addTodo={this.addTodo}
