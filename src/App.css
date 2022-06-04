@@ -10,16 +10,20 @@
 body {
     direction: rtl;
     font-family: 'Tajawal', sans-serif;
-    color: #17191d;
+    background-color: #e7f7e6;
 }
 
-.app {
+.container {
     margin: 30px auto;
+    padding: 0.8rem;
     width: 80%;
     display: flex;
     flex-direction: column;
-    min-height: 90vh;
     gap: 10px 20px;
+    background-color: white;
+    border-radius: 4px;
+    box-shadow: 0px 0px 1px 0px #890082;
+    min-height: 90vh;
 }
 
 @media only screen and (max-width: 768px) {
@@ -30,9 +34,9 @@ body {
 
 .app-header {
     padding: 0.7rem 0.5rem;
-    background-color: #0047fc;
-    color: white;
     font-weight: 400;
+    color: #890082;
+    border-radius: 10px;
 }
 
 .todo-form {
@@ -47,10 +51,11 @@ body {
 .todo-form select {
     display: block;
     padding: 0.7rem;
-    border: solid 2px #0047fc;
     font-family: 'Tajawal';
     font-weight: 700;
-    color: #17191d;
+    border-radius: 4px;
+    color: #008900;
+    border: 1px solid #890082;
 }
 
 .todo-form input {
@@ -71,14 +76,26 @@ body {
 }
 
 .todo-item {
-    border: 2px solid #fccb29;
-    /* background-color: #fccb29; */
-    color: #0b0b0c;
     padding: 0.5rem 0.5rem;
     display: flex;
     gap: 10px;
     justify-content: space-between;
     align-items: center;
+
+}
+
+.completed {
+    border: 1px solid #000700;
+    color: #000700;
+    border-radius: 4px;
+    background-color: #c5ebc3;
+}
+
+.uncompleted {
+    border: 1px solid #000700;
+    color: #000700;
+    border-radius: 4px;
+    background-color: #f6e3f3;
 }
 
 .todo-label {
@@ -93,74 +110,35 @@ body {
     font-size: 1.1rem;
 }
 
-.danger-100 {
-    color: #FFE9D5;
+.todo-item button.edit {
+    color: #5D0057;
 }
 
-.danger-200 {
-    color: #FFCEAB;
+.todo-item button.delete {
+    color: #5D0057;
 }
 
-.danger-300 {
-    color: #FFAC81;
+.card-popup-container {
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    width: 100%;
+    height: 100%;
+    z-index: 2;
+    background-color: rgba(0, 0, 0, 0.8);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    visibility: hidden;
+    opacity: 0;
+    transition: visibility 0s ease-in-out 300ms, opacity 1000ms;
 }
 
-.danger-400 {
-    color: #DB3820;
-}
-
-.danger-500 {
-    color: #DB3820;
-}
-
-.danger-600 {
-    color: #DB3820;
-}
-
-.danger-700 {
-    color: #DB3820;
-}
-
-.danger-800 {
-    color: #DB3820;
-}
-
-.danger-900 {
-    color: #DB3820;
-}
-
-.worning-100 {
-    color: #FFF7D6;
-}
-
-.worning-200 {
-    color: #FFEEAE;
-}
-
-.worning-300 {
-    color: #FFE185;
-}
-
-.worning-400 {
-    color: #FFD567;
-}
-
-.worning-500 {
-    color: #FFC235;
-}
-
-.worning-600 {
-    color: #DB9F26;
-}
-
-.worning-700 {
-    color: #B77E1A;
-}
-
-.worning-800 {
-    color: #936010;
-}
-
-.worning-900 {
-    color: #7A4A0A;
+.card-popup {
+    width: 50%;
+    height: 60%;
+    z-index: 3;
+    background-color: white;
+    opacity: 1;
+    padding: 20px 30px;
 }

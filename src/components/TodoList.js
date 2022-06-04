@@ -4,7 +4,6 @@ import TodoItem from "./TodoItem";
 class TodoList extends Component {
 
     render() {
-        console.log("render TodoList");
         return (
             <ul className="todo-list">
                 {this.props.todos.map(item => {
@@ -15,6 +14,7 @@ class TodoList extends Component {
                         completed={item.completed}
                         deleteTodo={this.props.deleteTodo}
                         changeTodoState={this.props.changeTodoState}
+                        showEditFancy={this.props.showEditFancy}
                     />
                 })}
             </ul>

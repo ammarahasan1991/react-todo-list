@@ -11,14 +11,12 @@ class Form extends Component {
     }
 
     onChangeHandler = (e) => {
-        console.log(e.target.value);
         this.setState({
             inputText: e.target.value
         })
     }
 
     changeFilterOption = (e) => {
-        console.log(e.target.value)
         this.setState({
             filterOption: e.target.value
         });
@@ -26,7 +24,6 @@ class Form extends Component {
     }
 
     render() {
-        console.log("render Form");
         return (
             <div className="todo-form">
                 <input type="text"

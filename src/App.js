@@ -9,8 +9,6 @@ class App extends Component {
 
     constructor(props) {
         super(props);
-        console.log("constructor App");
-
         this.state = {
             todos: [
                 {
@@ -29,7 +27,9 @@ class App extends Component {
                     completed: false
                 }
             ],
-            filterOption: "all"
+            filterOption: "all",
+            editedTodoId: 0,
+            editedTodoText: ""
         }
     }
 
@@ -66,14 +66,48 @@ class App extends Component {
     }
 
     changeFilterOption = (option) => {
-        console.log(option);
         this.setState({
             filterOption: option
         })
     }
 
+    showEditFancy = (id) => {
+        document.getElementById('card-popup-container').style.cssText = "visibility: visible; opacity: 1;";
+        let item = this.state.todos.filter((item) => item.id === id);
+        document.getElementsByClassName("edit_tite")[0].innerHTML = item[0].title;
+        this.setState({
+            editedTodoId: id
+        })
+    }
+
+    changeEditTodoText = (e) => {
+        this.setState({
+            editedTodoText: e.target.value
+        })
+    }
+
+    editTodo = () => {
+        let newArray = this.state.todos.map(item => {
+            if (item.id === this.state.editedTodoId) {
+                item.title = this.state.editedTodoText
+            }
+            return item;
+        });
+        this.setState({
+            todos: newArray
+        });
+        this.close()
+    }
+
+    close = () => {
+        document.getElementById('card-popup-container').style.cssText = "visibility: hidden; opacity: 0;";
+        this.setState({
+            editedTodoId: 0,
+            editedTodoText: ""
+        })
+    }
+
     render() {
-        console.log("render App");
         let filtered = [];
         if (this.state.filterOption === "all") {
             filtered = this.state.todos;
@@ -84,16 +118,30 @@ class App extends Component {
         }
         return (
             <div className='app'>
-                <Header />
-                <Form
-                    addTodo={this.addTodo}
-                    changeFilterOption={this.changeFilterOption}
-                />
-                <TodoList
-                    todos={filtered}
-                    deleteTodo={this.deleteTodo}
-                    changeTodoState={this.changeTodoState}
-                />
+                <div className='container'>
+                    <Header />
+                    <Form
+                        addTodo={this.addTodo}
+                        changeFilterOption={this.changeFilterOption}
+                    />
+                    <TodoList
+                        todos={filtered}
+                        deleteTodo={this.deleteTodo}
+                        changeTodoState={this.changeTodoState}
+                        showEditFancy={this.showEditFancy}
+                    />
+                </div>
+
+
+                <div className='card-popup-container' id="card-popup-container">
+                    <div className='card-popup'>
+                        <h2>تعديل مهمة</h2>
+                        <p className='edit_tite'>لعب رياضة</p>
+                        <input type="text" onChange={this.changeEditTodoText} value={this.state.editedTodoText} />
+                        <button onClick={this.editTodo}>عدل</button>
+                        <button onClick={this.close}>اغلاق</button>
+                    </div>
+                </div>
             </div>
         );
     }

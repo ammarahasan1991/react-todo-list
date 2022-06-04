@@ -2,9 +2,8 @@ import { Component } from "react";
 
 class TodoItem extends Component {
     render() {
-        console.log("render TodoItem");
         return (
-            <li className="todo-item">
+            <li className={`todo-item ${this.props.completed ? 'completed' : 'uncompleted'}`} >
                 <input
                     type="checkbox"
                     id={this.props.id}
@@ -15,10 +14,12 @@ class TodoItem extends Component {
                 />
                 <label htmlFor={this.props.id} className="todo-label">{this.props.title}</label>
 
-                <button className="worning">
+                <button className="edit" onClick={() => {
+                    this.props.showEditFancy(this.props.id)
+                }}>
                     <i className="fa-solid fa-pen"></i>
                 </button>
-                <button onClick={() => { this.props.deleteTodo(this.props.id); }} className="danger">
+                <button onClick={() => { this.props.deleteTodo(this.props.id); }} className="delete">
                     <i className="fa-solid fa-trash-can"></i>
                 </button>
             </li >
