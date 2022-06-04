@@ -136,9 +136,56 @@ body {
 
 .card-popup {
     width: 50%;
-    height: 60%;
+    height: 45%;
     z-index: 3;
     background-color: white;
     opacity: 1;
-    padding: 20px 30px;
+    padding: 20px 15px;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    justify-content: space-evenly;
+}
+
+.card-popup h2 {
+    color: #5D0057;
+}
+
+.card-popup p {
+    font-size: 1.1rem;
+    font-weight: 500;
+}
+
+.card-popup input {
+    display: block;
+    padding: 0.7rem;
+    font-family: 'Tajawal';
+    font-weight: 700;
+    border-radius: 4px;
+    width: 100%;
+    color: #008900;
+    border: 1px solid #890082;
+}
+
+.card-popup .control-buttons {
+    display: flex;
+    justify-content: space-around;
+    justify-self: end;
+}
+
+.card-popup .edit {
+    border: 1px solid #5D0057;
+    padding: 10px 50px;
+    background-color: #5D0057;
+    color: white;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.card-popup .close {
+    border: 1px solid #5D0057;
+    padding: 10px 50px;
+    color: #5D0057;
+    border-radius: 5px;
+    cursor: pointer;
 }

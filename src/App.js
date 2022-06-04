@@ -87,16 +87,18 @@ class App extends Component {
     }
 
     editTodo = () => {
-        let newArray = this.state.todos.map(item => {
-            if (item.id === this.state.editedTodoId) {
-                item.title = this.state.editedTodoText
-            }
-            return item;
-        });
-        this.setState({
-            todos: newArray
-        });
-        this.close()
+        if (this.state.editedTodoText !== "") {
+            let newArray = this.state.todos.map(item => {
+                if (item.id === this.state.editedTodoId) {
+                    item.title = this.state.editedTodoText
+                }
+                return item;
+            });
+            this.setState({
+                todos: newArray
+            });
+            this.close()
+        }
     }
 
     close = () => {
@@ -135,11 +137,18 @@ class App extends Component {
 
                 <div className='card-popup-container' id="card-popup-container">
                     <div className='card-popup'>
-                        <h2>تعديل مهمة</h2>
-                        <p className='edit_tite'>لعب رياضة</p>
-                        <input type="text" onChange={this.changeEditTodoText} value={this.state.editedTodoText} />
-                        <button onClick={this.editTodo}>عدل</button>
-                        <button onClick={this.close}>اغلاق</button>
+                        <div>
+                            <h2>تعديل مهمة</h2>
+                            <p className='edit_tite'>لعب رياضة</p>
+                        </div>
+                        <div>
+                            <p>نص المهمة الجديد</p>
+                            <input type="text" onChange={this.changeEditTodoText} value={this.state.editedTodoText} />
+                        </div>
+                        <div className='control-buttons'>
+                            <button onClick={this.editTodo} className="edit">عدل</button>
+                            <button onClick={this.close} className="close">اغلاق</button>
+                        </div>
                     </div>
                 </div>
             </div>
